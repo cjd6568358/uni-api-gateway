@@ -1,0 +1,25 @@
+{
+  "name": "uni-http-gateway",
+  "version": "1.0.0",
+  "description": "统一HTTP请求网关",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjd6568358/uni-http-gateway.git"
+  },
+  "keywords": [
+    "http-gateway"
+  ],
+  "author": "cjd6568358",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cjd6568358/uni-http-gateway/issues"
+  },
+  "homepage": "https://github.com/cjd6568358/uni-http-gateway#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}

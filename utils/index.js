@@ -13,6 +13,4 @@ let getProcessEnv = (key) => {
   return value;
 };
 
-exports = module.exports = {
-  getProcessEnv,
-};
+export default {};

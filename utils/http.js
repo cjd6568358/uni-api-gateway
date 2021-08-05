@@ -43,13 +43,17 @@ httpClient.interceptors.response.use(
   },
   async (error) => {
     // Do something with response error
-    let node = nodes[error.config.node_index];
-    node.retry_times--;
-    if (node.retry_times < 0) {
-      return Promise.reject(error);
+    if (error.config.node_index >= 0) {
+      let node = nodes[error.config.node_index];
+      node.retry_times--;
+      if (node.retry_times < 0) {
+        return Promise.reject(error);
+      } else {
+        delete error.config.baseUrl;
+        return httpClient(error.config);
+      }
     } else {
-      delete error.config.baseUrl;
-      return httpClient(error.config);
+      return Promise.reject(error);
     }
   }
 );

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { nodes } from "../index";
+import { getAccessToken } from "./index";
 const httpClient = axios.create({
   withCredentials: true,
 });
@@ -23,6 +24,17 @@ httpClient.interceptors.request.use(
       }
       if (node) {
         Object.assign(config, { baseUrl: node.baseUrl, node_index });
+        if (node.node_type === "cloudfunction") {
+          let { appid, env, access_token_url } = node.options;
+          let access_token = await getAccessToken(appid, access_token_url);
+          let function_name = config.url.replace(/\//g, "_");
+          Object.assign(config.data, config.params);
+          config.params = {
+            access_token,
+            env,
+            name: function_name,
+          };
+        }
       } else {
         return Promise.reject("找不到可用的node节点");
       }
